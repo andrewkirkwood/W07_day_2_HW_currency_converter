@@ -11,6 +11,9 @@
 </head>
 <body>
   <div id="app">
+    <select v-model="selectedCurrency">
+      <option disabled v-for="(currency, key) in currencies.rates " :value="currency">{{key}}</option>
+    </select>
     <h1>hello world</h1>
   </div>
 </body>
