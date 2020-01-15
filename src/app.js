@@ -5,7 +5,15 @@ document.addEventListener('DOMContentLoaded', () => {
     el: "#app",
     data: {
       currencies: {},
-      // currencyKeys: []
+      selectedCurrency: null,
+      amountInput: null,
+      newAmount: null,
+      convertDirection: null
+    },
+    computed: {
+      currencyConversion: function () {
+        euroCalculation()
+      }
     },
     mounted: function() {
       this.fetchCurrencies()
@@ -15,16 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch("https://api.exchangeratesapi.io/latest")
         .then(response => response.json())
         .then(data => this.currencies = data)
-        // .then(keyData => this.getKeys())
-        .then(console.log(this.currencies))
-
-      },
-      selectedCurrency: function () {
-
       }
-      // getKeys: function () {
-      //   Object.keys(this.currencies.rates).forEach(function(key) {
-      //     this.currencyKeys.push(key)
+      // euroCalculation: function(){
+      //   Object.keys(this.currencies.rates).forEach(function (currency) {
+      //     if this.selectedCurrency === currency {
+      //       return this.newAmount = this.amountInput
+      //     }
       //   })
       // }
     }

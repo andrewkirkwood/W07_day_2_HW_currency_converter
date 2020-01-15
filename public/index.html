@@ -11,10 +11,22 @@
 </head>
 <body>
   <div id="app">
+    <h1>Currency converter</h1>
+    <label for="">Conversion Rate</label>
+    <input v-model="convertDirection" type="radio" name="" value="FromEuro"> From Euro<br>
+    <input v-model="convertDirection" type="radio" name="" value="ToEuro"> To Euro<br>
+
+    <label for="new-currency">Amount (€)</label>
+    <input id="new-currency" type="number" v-model="amountInput">
+    <label for="currency-select">Select currency</label>
     <select v-model="selectedCurrency">
-      <option disabled v-for="(currency, key) in currencies.rates " :value="currency">{{key}}</option>
+      <option  value="" v-for="(currency, key) in currencies.rates " :value="currency">{{key}}</option>
     </select>
-    <h1>hello world</h1>
+    <h2 v-if="convertDirection === 'FromEuro'">{{ amountInput * selectedCurrency.toFixed(2)}}</h2>
+    <h2 v-else="convertDirection === 'ToEuro'">{{ amountInput / selectedCurrency}}</h2>
+
   </div>
 </body>
 </html>
+
+<!-- Output: {{ amountInput * selectedCurrency}} -->
